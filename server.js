@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 });
 
 //静的コンテンツ追加用
-app.use(express.static(__dirname * '/public'));
+app.use(express.static(__dirname + '/public'));
 
 app.post('/', (req, res) =>{
     let result = {
@@ -29,7 +29,7 @@ app.post('/', (req, res) =>{
     res.send(result);
 });
 
-//ルーティング
+// //ルーティング
 //webルートにリクエストされたらレスポンス
 app.get('/', (req, res)=> {
     res.send('Hello Express');
