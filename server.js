@@ -1,7 +1,7 @@
 //
 const express = require('express');
 
-//
+//サーバ作成
 const app = express();
 
 //ルーティング
