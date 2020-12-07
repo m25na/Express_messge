@@ -1,8 +1,30 @@
-//
+//express モジュールの読み込み
 const express = require('express');
 
 //サーバ作成
 const app = express();
+app.use(express.json());
+// URLエンコードされたデータを解析する
+app.use(express.urlencoded({ extended: true }));
+
+//クロスドメインの許可　XSS
+app.use((req, res, next) => {
+    console.log(`middleware: all. url: ${req.url}`);
+
+    //CROS設定: 全てのドメインに対して許可
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+    //次の処理
+    next();
+});
+
+app.post('/', (req, res) =>{
+    let result = {
+        message: req.body.message,
+    };
+    res.send(result);
+});
 
 //ルーティング
 //webルートにリクエストされたらレスポンス
