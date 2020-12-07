@@ -19,6 +19,9 @@ app.use((req, res, next) => {
     next();
 });
 
+//静的コンテンツ追加用
+app.use(express.static(__dirname * '/public'));
+
 app.post('/', (req, res) =>{
     let result = {
         message: req.body.message,
